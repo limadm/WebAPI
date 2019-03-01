@@ -1,14 +1,13 @@
 MVN_PROJECT=webapi-postgresql
-MVN_OPTIONS=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
 
 compile:
-	mvn compile -P$(MVN_PROJECT) $(MVN_OPTIONS)
+	mvn compile -P$(MVN_PROJECT)
 
 clean:
 	mvn clean
 
 package: clean compile
-	mvn package -P$(MVN_PROJECT) $(MVN_OPTIONS)
+	mvn package -P$(MVN_PROJECT)
 
 up: package
 	docker cp target/WebAPI.war postgresql_broadsea-webtools_1:/usr/local/tomcat/webapps/WebAPI.war
