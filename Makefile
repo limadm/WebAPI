@@ -1,9 +1,17 @@
-compile:
-	mvn clean
-	mvn compile -Pwebapi-postgresql-laertes
+MVN_PROJECT=webapi-postgresql
+MVN_OPTIONS=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080
 
-package: compile
-	mvn package -Pwebapi-postgresql-laertes
+compile:
+	mvn compile -P$(MVN_PROJECT) $(MVN_OPTIONS)
+
+clean:
+	mvn clean
+
+package: clean compile
+	mvn package -P$(MVN_PROJECT) $(MVN_OPTIONS)
+
+up: package
+	docker cp target/WebAPI.war postgresql_broadsea-webtools_1:/usr/local/tomcat/webapps/WebAPI.war
 
 deploy: package 
 	sudo service tomcat7 stop

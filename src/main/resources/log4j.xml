@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-	<appender class="org.apache.log4j.ConsoleAppender" name="stdout">
+	<appender class="org.apache.log4j.FileAppender" name="stdout">
+		<param name="file"   value="webapi.log" />
+		<param name="append" value="false" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param value="%d{yyyy-MM-dd HH:mm:ss.SSS} %p %t %c - %x - %m%n"
 				name="ConversionPattern" />
